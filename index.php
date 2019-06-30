@@ -12,13 +12,16 @@
 <h3 class="text-center">Enter Here</h3>
 
 <form action="" method="POST">
-	<label for="username">Name</label>
-	<input type="text" name="username">
+	<div class="form-group">
+		<label for="username">Name</label>
+		<input type="text" class="form-control" name="username">
+	</div>
+	<div class="form-group">
+		<label for="email">Email</label>
+		<input type="text" class="form-control" name="email">
+	</div>
 
-	<label for="email">Name</label>
-	<input type="text" name="email">
-
-	<input type="submit" value="Submit">
+	<input type="submit" class="btn btn-primary" value="Submit">
 </form>
 
 </body>
