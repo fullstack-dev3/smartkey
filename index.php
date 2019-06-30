@@ -1,3 +1,11 @@
+<?php
+
+if (isset($_POST)) {
+	var_dump($_POST);exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
