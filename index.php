@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="row">	
+<div class="container">	
 	<h3 class="text-center">Enter Here</h3>
 
 	<form action="" method="POST">
