@@ -1,0 +1,5 @@
+{
+    "require": {
+        "armetiz/airtable-php": "^0.3.2"
+    }
+}
