@@ -11,6 +11,7 @@ $airtable = new Airtable(array(
 
 $username = '';
 $email = '';
+$number = 0;
 
 $success = false;
 
@@ -79,11 +80,31 @@ if (isset($_POST['username']) && isset($_POST['email'])) {
 
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
+<style type="text/css">
+	.number {
+		background-color: #ddddff;
+		margin: 20px auto;
+		width: 500px;
+	}
+	.number span {
+		font-weight: bold;
+		font-size: 24px;
+	}
+	.number span:last-child {
+		font-size: 36px;
+	}
+</style>
 <body>
 
 <div class="container">
 <?php if ($success) { ?>
-
+	<h1 class="text-center">Thanks For Signing Up</h1>
+	<div class="number">
+		<div class="text-center">
+			<span class="align-middle">Here is your number : </span>
+			<span class="align-middle"><?php echo $number ?></span>
+		</div>
+	</div>
 <?php } else { ?>
 	<h3 class="text-center">Enter Here</h3>
 
