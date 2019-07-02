@@ -1,19 +1,28 @@
 <?php
 
-$ch = curl_init();
-
-curl_setopt($ch, CURLOPT_URL, 'https://api.airtable.com/v0/appXfXlSlxIovOjTW/Table%201?api_key=keyUClRNN9po9WMti');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-$result = curl_exec($ch);
-var_dump($result);
-if (curl_errno($ch)) {
-    echo 'Error:' . curl_error($ch);
-}
-curl_close($ch);
-
 if (isset($_POST['username']) && isset($_POST['email'])) {
-	var_dump($_POST);exit;
+	$name = $_POST['username'];
+	$email = $_POST['email'];
+	$number = rand(1000, 9999);
+
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_URL, 'https://api.airtable.com/v0/appXfXlSlxIovOjTW/Table%201');
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, 
+		'{"fields": {"Name": "' . $name . '", "Email": "' . $email . '", "Giveaway Number": "' . $number . '"}}');
+	curl_setopt($ch, CURLOPT_POST, 1);
+
+	$headers = array();
+	$headers[] = 'Authorization: Bearer keyUClRNN9po9WMti';
+	$headers[] = 'Content-Type: application/json';
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+	$result = curl_exec($ch);
+	if (curl_errno($ch)) {
+	    echo 'Error:' . curl_error($ch);
+	}
+	curl_close($ch);
 }
 
 ?>
