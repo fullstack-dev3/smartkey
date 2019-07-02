@@ -6,9 +6,11 @@ $key   = "keyUClRNN9po9WMti";
 $base  = "appXfXlSlxIovOjTW";
 $table = "Table 1";
 
-/*$airtable = new Airtable($key, $base);
+$airtable = new Airtable($key, $base);
 
-$records = $airtable->findRecords($table);*/
+$records = $airtable->findRecords($table);
+
+var_dump($records);
 /*$ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, 'https://api.airtable.com/v0/appXfXlSlxIovOjTW/Table%201');
