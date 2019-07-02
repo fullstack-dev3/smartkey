@@ -1,0 +1,5 @@
+{
+    "require": {
+        "sleiman/airtable-php": "^2.2"
+    }
+}

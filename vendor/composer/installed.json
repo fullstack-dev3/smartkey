@@ -1,0 +1,34 @@
+[
+    {
+        "name": "sleiman/airtable-php",
+        "version": "2.2.9",
+        "version_normalized": "2.2.9.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sleiman/airtable-php.git",
+            "reference": "c410967c92d747910e2257d5a6c9b75e57ec08f7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sleiman/airtable-php/zipball/c410967c92d747910e2257d5a6c9b75e57ec08f7",
+            "reference": "c410967c92d747910e2257d5a6c9b75e57ec08f7",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2018-10-18T15:13:36+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "TANIOS\\Airtable\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "A PHP wrapper for the Airtable API Edit"
+    }
+]

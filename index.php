@@ -1,14 +1,23 @@
 <?php
 
-use src\Airtable;
+require 'vendor/autoload.php';
 
-$key   = "keyUClRNN9po9WMti";
-$base  = "appXfXlSlxIovOjTW";
-$table = "Table 1";
+use \TANIOS\Airtable\Airtable;
 
-$airtable = new Airtable($key, $base);
+$airtable = new Airtable(array(
+    'api_key' => 'keyUClRNN9po9WMti',
+    'base'    => 'appXfXlSlxIovOjTW'
+));
 
-$records = $airtable->findRecords($table);
+if (isset($_POST['username']) && isset($_POST['email'])) {
+	$data = array(
+		'Name' => $_POST['username'],
+		'Email' => $_POST['email'],
+		'Giveaway Number' => rand(10000, 99000)
+	);
+
+	$airtable->saveContent('Table 1', $data);
+}
 
 ?>
 
