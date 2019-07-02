@@ -1,5 +1,33 @@
 <?php
 
+use src\Airtable;
+
+$key   = "keyUClRNN9po9WMti";
+$base  = "appXfXlSlxIovOjTW";
+$table = "Table 1";
+
+$airtable = new Airtable($key, $base);
+
+$records = $airtable->findRecords($table);
+/*$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, 'https://api.airtable.com/v0/appXfXlSlxIovOjTW/Table%201');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+
+$headers = array();
+$headers[] = 'Authorization: Bearer keyUClRNN9po9WMti';
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+curl_close($ch);
+
+var_dump($result);
+
 if (isset($_POST['username']) && isset($_POST['email'])) {
 	$name = $_POST['username'];
 	$email = $_POST['email'];
@@ -23,7 +51,7 @@ if (isset($_POST['username']) && isset($_POST['email'])) {
 	    echo 'Error:' . curl_error($ch);
 	}
 	curl_close($ch);
-}
+}*/
 
 ?>
 
