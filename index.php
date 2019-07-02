@@ -9,14 +9,61 @@ $airtable = new Airtable(array(
     'base'    => 'appXfXlSlxIovOjTW'
 ));
 
-if (isset($_POST['username']) && isset($_POST['email'])) {
-	$data = array(
-		'Name' => $_POST['username'],
-		'Email' => $_POST['email'],
-		'Giveaway Number' => rand(10000, 99000)
-	);
+$username = '';
+$email = '';
 
-	$airtable->saveContent('user', $data);
+$success = false;
+
+$validName = true;
+$validEmail = true;
+
+$existName = false;
+$existEmail = false;
+
+if (isset($_POST['username']) && isset($_POST['email'])) {
+	$username = $_POST['username'];
+	$email = $_POST['email'];
+
+	if ($username == '')
+		$validName = false;
+
+	if ($email == '' || !filter_var($email, FILTER_VALIDATE_EMAIL))
+		$validEmail = false;
+
+	if ($validName && $validEmail) {
+		$checkName = $airtable->quickCheck('user', 'Name', $username);
+
+		if ($checkName->count > 0)
+			$existName = true;
+
+		$checkEmail = $airtable->quickCheck('user', 'Email', $email);
+
+		if ($checkEmail->count > 0)
+			$existEmail = true;
+
+		$existNumber = false;
+
+		while (!$existNumber) {
+			$number = rand(10000, 99000);
+
+			$checkNumber = $airtable->quickCheck('user', 'Giveaway Number', $number);
+
+			if ($checkNumber->count > 0)
+				$existNumber = true;
+		}
+
+		if (!$existName && !$existEmail) {
+			$data = array(
+				'Name' => $username,
+				'Email' => $email,
+				'Giveaway Number' => $number
+			);
+
+			$airtable->saveContent('user', $data);
+
+			$success = true;
+		}
+	}
 }
 
 ?>
@@ -32,21 +79,46 @@ if (isset($_POST['username']) && isset($_POST['email'])) {
 </head>
 <body>
 
-<div class="container">	
+<div class="container">
+<?php if ($success) { ?>
+
+<?php } else { ?>
 	<h3 class="text-center">Enter Here</h3>
 
 	<form action="" method="POST">
 		<div class="form-group">
 			<label for="username">Name</label>
-			<input type="text" class="form-control" name="username">
+		<?php if ($validName && !$existName) { ?>
+			<input type="text" class="form-control" name="username" value="<?php echo $username; ?>">
+		<?php } else { ?>
+			<input type="text" class="form-control is-invalid" name="username">
+			<div class="invalid-feedback">
+			<?php
+				if (!$validName) echo 'Please enter your name here.';
+				if ($existName) echo 'Your name is already registered.';
+			?>
+	        </div>
+		<?php } ?>
 		</div>
+
 		<div class="form-group">
 			<label for="email">Email</label>
-			<input type="text" class="form-control" name="email">
+		<?php if ($validEmail && !$existEmail) { ?>
+			<input type="text" class="form-control" name="email" value="<?php echo $email; ?>">
+		<?php } else { ?>
+			<input type="text" class="form-control is-invalid" name="email">
+			<div class="invalid-feedback">
+			<?php
+				if (!$validEmail) echo 'Please enter your valid Email here.';
+				if ($existEmail) echo 'Your Email is already registered.';
+			?>
+	        </div>
+		<?php } ?>
 		</div>
 
 		<input type="submit" class="btn btn-primary" value="Submit">
 	</form>
+<?php } ?>
 </div>
 
 </body>
