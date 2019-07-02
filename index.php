@@ -1,5 +1,7 @@
 <?php
 
+use src\Airtable;
+
 $key   = "keyUClRNN9po9WMti";
 $base  = "appXfXlSlxIovOjTW";
 $table = "Table 1";
