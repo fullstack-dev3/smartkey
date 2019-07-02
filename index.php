@@ -1,5 +1,17 @@
 <?php
 
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, 'https://api.airtable.com/v0/appXfXlSlxIovOjTW/Table%201?api_key=keyUClRNN9po9WMti');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+$result = curl_exec($ch);
+var_dump($result);
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+curl_close($ch);
+
 if (isset($_POST['username']) && isset($_POST['email'])) {
 	var_dump($_POST);exit;
 }
