@@ -41,15 +41,17 @@ if (isset($_POST['username']) && isset($_POST['email'])) {
 		if ($checkEmail->count > 0)
 			$existEmail = true;
 
-		$existNumber = false;
+		$existNumber = true;
 
-		while (!$existNumber) {
+		while ($existNumber) {
 			$number = rand(10000, 99000);
 
 			$checkNumber = $airtable->quickCheck('user', 'Giveaway Number', $number);
 
 			if ($checkNumber->count > 0)
 				$existNumber = true;
+			else
+				$existNumber = false;
 		}
 
 		if (!$existName && !$existEmail) {
