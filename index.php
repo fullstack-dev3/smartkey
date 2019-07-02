@@ -1,6 +1,6 @@
 <?php
 
-use src\Airtable;
+require_once('src\Airtable');
 
 $key   = "keyUClRNN9po9WMti";
 $base  = "appXfXlSlxIovOjTW";
