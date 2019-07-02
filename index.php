@@ -16,7 +16,7 @@ if (isset($_POST['username']) && isset($_POST['email'])) {
 		'Giveaway Number' => rand(10000, 99000)
 	);
 
-	$airtable->saveContent('Table1', $data);
+	$airtable->saveContent('user', $data);
 }
 
 ?>
